@@ -1,0 +1,67 @@
+---
+title: "Hmwk01"
+author: "Derek B"
+date: "8/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Background
+rmarkdown is a plain text file with .rmd extension to reccord your code, results, comments as to provide a complete reccord of your work.
+
+rmarkdown has 3 elements
+YAML Header(yaml aint markup language): Controls certain output settings that apply to the entire document. (braced /w ----'s)
+
+Code Chunk: Includes code to run, and code-related options. (usually starts /w ````{r})
+  a- Code to Generate a Table: Outputs a table with minimal formatting like you would see in the console.
+
+
+ b- Code to Generate a Plot: Outputs a plot. Here, the code used to generate the plot will not be included because the parameter echo=FALSE is specified. 
+Body Text: For communicating results and findings to the targeted audience.
+
+##markdown syntax
+**forBold**or __and__
+*italics*or _and_
+superscript ^2^
+~~strikethrough~~
+embedd links with [link](https://introdatasci.dlilab.com/assignments/)
+ create white space with :
+ <br>
+ 
+ make block quotes:
+ > blockquote
+ 
+ to create horizontal rule use ***
+ 
+ use # to modify header size #big  to 
+ ######small 
+ embed equations $c^2 = A^2+B^2 $
+ also r code can be embedded in text by just bracketing with ``
+
+
+
+
+also the cheat sheet is available via help> cheatsheets> rmarkdown cheatsheets or https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
