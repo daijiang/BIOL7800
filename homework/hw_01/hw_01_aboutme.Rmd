@@ -12,9 +12,11 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 # __Derek__ 
 #### __about me__ 
 
-my foundation is in Structural Biology through crystallization of _pseudoglycosyltransferase_ __VldE__
+my foundation is in Structural Biology through crystallization of _pseudoglycosyltransferase_ __VldE__. My research investigates the unique _Sni_ mechanism that permits a natural stereospecific product. With R I can use the information I've learned to better resolve the glycome
+![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.stack.imgur.com%2FZ70v9.png&f=1&nofb=1)
 
 <br>
 
 ***
 contact me "via" [linkedIn](www.linkedin.com/in/derek-bratcher)
+[github](https://github.com/Deebee33) ![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.46goeWrG5eWVufJGs5vjVwHaEK%26pid%3DApi&f=1)
