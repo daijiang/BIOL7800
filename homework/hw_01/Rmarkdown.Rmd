@@ -60,6 +60,9 @@ embedd links with [link](https://introdatasci.dlilab.com/assignments/)
  ######small 
  embed equations $c^2 = A^2+B^2 $
  also r code can be embedded in text by just bracketing with ``
+ <br>
+ for images use ![]then insert web adderess or localfiles in parenthesis
+ ![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.CMA8aiTlBYufNVaYGiOx1wHaD4%26pid%3DApi&f=1)
 
 
 
