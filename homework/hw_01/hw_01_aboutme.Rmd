@@ -1,0 +1,20 @@
+---
+title: "about_me"
+author: "Derek B"
+date: "8/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+# __Derek__ 
+#### __about me__ 
+
+my foundation is in Structural Biology through crystallization of _pseudoglycosyltransferase_ __VldE__
+
+<br>
+
+***
+contact me "via" [linkedIn](www.linkedin.com/in/derek-bratcher)
