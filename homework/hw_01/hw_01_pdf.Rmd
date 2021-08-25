@@ -1,12 +1,12 @@
 ---
-title: "about_me"
+title: "hw_01_pdf"
 author: "Derek B"
 date: "8/25/2021"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # __Derek__ 
