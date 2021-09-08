@@ -38,11 +38,32 @@ library(RSelenium)
 ```
 1st upload packages for the job at hand "warn.conflicts = false' is to suppress start up messages and warnings
 
-set up a server to run javascript
+set up a server to run javascript and load the webpage
+ ###rs= start a selenium server and browser (firefox)###
 
 ```{r}
-rs = RSelenium::rsDriver(browser = "firefox")
-rsc = rsc$client
-rsc$navigate = ("https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8")
 
+rs = RSelenium::rsDriver(browser = "firefox")
+rsc = rs$client
+rsc$navigate("https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8")
+
+```
+"rsc = rs$client" shorten access to client (webbrowser?)
+"rsc$navigate" navigate to indicated site
+
+retrieve page source (that webpages sourcecode,info to display webpage)
+use Rvest to read the html code of that one page with R
+define lectures by scanning the defined url using css for the "video title"
+```{r}
+ht=rsc$getPageSource()
+url= rvest::read_html(ht[[1]])
+lectures= html_elements(url, css = '#video-title')
+```
+extract plain text from lectures html code define as lec_names
+extract the links (href)on lecture area /w html_attr
+attach youtube web address to links extracted
+```{r}
+lec_names= html_text2(lectures)
+lec_links=html_attr(lectures, "href")
+lec_links_full = paste0("https://www.youtube.com", lec_links)
 ```
