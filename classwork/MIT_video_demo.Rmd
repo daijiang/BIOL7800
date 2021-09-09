@@ -67,3 +67,12 @@ lec_names= html_text2(lectures)
 lec_links=html_attr(lectures, "href")
 lec_links_full = paste0("https://www.youtube.com", lec_links)
 ```
+at this point the selenium server has been uploaded and used firefox to scan the webpage for the lectures scraping the names and links
+
+instruct rvest to get a view count of one link
+define url2 as a command to read the html code for the links collected and appended /w lec_links_full (designate target)
+then define x as scanning url2 for css (#info) 
+css cascading style sheets are html language use to style info/elements on a page
+```{r}
+url2 = read_html(lec_links_full[1])
+x = html_elements(url2, css = "#info")
