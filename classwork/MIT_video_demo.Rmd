@@ -42,14 +42,13 @@ set up a server to run javascript and load the webpage
  ###rs= start a selenium server and browser (firefox)###
 
 ```{r}
-
 rs = RSelenium::rsDriver(browser = "firefox")
 rsc = rs$client
 rsc$navigate("https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8")
 
 ```
-"rsc = rs$client" shorten access to client (webbrowser?)
-"rsc$navigate" navigate to indicated site
+`"rsc = rs$client"` shorten access to client (webbrowser that you open)
+`rsc$navigate` navigate to indicated site
 
 retrieve page source (that webpages sourcecode,info to display webpage)
 use Rvest to read the html code of that one page with R
@@ -76,3 +75,4 @@ css cascading style sheets are html language use to style info/elements on a pag
 ```{r}
 url2 = read_html(lec_links_full[1])
 x = html_elements(url2, css = "#info")
+```

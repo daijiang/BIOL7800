@@ -194,9 +194,114 @@ pre code {
 <pre class="r"><code>library(rvest, warn.conflicts = FALSE)
 library(RSelenium)</code></pre>
 <pre><code>## Warning: package &#39;RSelenium&#39; was built under R version 4.1.1</code></pre>
-</div>
-<div id="st-upload-packages-for-the-job-at-hand-warn.conflicts-false-is-to-suppress-start-up-messages-and-warnings" class="section level1">
-<h1>1st upload packages for the job at hand &quot;warn.conflicts = false’ is to suppress start up messages and warnings</h1>
+<p>1st upload packages for the job at hand &quot;warn.conflicts = false’ is to suppress start up messages and warnings</p>
+<p>set up a server to run javascript and load the webpage ###rs= start a selenium server and browser (firefox)###</p>
+<pre class="r"><code>rs = RSelenium::rsDriver(browser = &quot;firefox&quot;)</code></pre>
+<pre><code>## checking Selenium Server versions:</code></pre>
+<pre><code>## BEGIN: PREDOWNLOAD</code></pre>
+<pre><code>## BEGIN: DOWNLOAD</code></pre>
+<pre><code>## BEGIN: POSTDOWNLOAD</code></pre>
+<pre><code>## checking chromedriver versions:</code></pre>
+<pre><code>## BEGIN: PREDOWNLOAD</code></pre>
+<pre><code>## BEGIN: DOWNLOAD</code></pre>
+<pre><code>## BEGIN: POSTDOWNLOAD</code></pre>
+<pre><code>## checking geckodriver versions:</code></pre>
+<pre><code>## BEGIN: PREDOWNLOAD</code></pre>
+<pre><code>## BEGIN: DOWNLOAD</code></pre>
+<pre><code>## BEGIN: POSTDOWNLOAD</code></pre>
+<pre><code>## checking phantomjs versions:</code></pre>
+<pre><code>## BEGIN: PREDOWNLOAD</code></pre>
+<pre><code>## BEGIN: DOWNLOAD</code></pre>
+<pre><code>## BEGIN: POSTDOWNLOAD</code></pre>
+<pre><code>## [1] &quot;Connecting to remote server&quot;
+## $acceptInsecureCerts
+## [1] FALSE
+## 
+## $browserName
+## [1] &quot;firefox&quot;
+## 
+## $browserVersion
+## [1] &quot;92.0&quot;
+## 
+## $`moz:accessibilityChecks`
+## [1] FALSE
+## 
+## $`moz:buildID`
+## [1] &quot;20210903235534&quot;
+## 
+## $`moz:geckodriverVersion`
+## [1] &quot;0.29.1&quot;
+## 
+## $`moz:headless`
+## [1] FALSE
+## 
+## $`moz:processID`
+## [1] 22176
+## 
+## $`moz:profile`
+## [1] &quot;C:\\Users\\derek\\AppData\\Local\\Temp\\rust_mozprofileW9e3sO&quot;
+## 
+## $`moz:shutdownTimeout`
+## [1] 60000
+## 
+## $`moz:useNonSpecCompliantPointerOrigin`
+## [1] FALSE
+## 
+## $`moz:webdriverClick`
+## [1] TRUE
+## 
+## $pageLoadStrategy
+## [1] &quot;normal&quot;
+## 
+## $platformName
+## [1] &quot;windows&quot;
+## 
+## $platformVersion
+## [1] &quot;10.0&quot;
+## 
+## $proxy
+## named list()
+## 
+## $setWindowRect
+## [1] TRUE
+## 
+## $strictFileInteractability
+## [1] FALSE
+## 
+## $timeouts
+## $timeouts$implicit
+## [1] 0
+## 
+## $timeouts$pageLoad
+## [1] 300000
+## 
+## $timeouts$script
+## [1] 30000
+## 
+## 
+## $unhandledPromptBehavior
+## [1] &quot;dismiss and notify&quot;
+## 
+## $webdriver.remote.sessionid
+## [1] &quot;bb4bd396-83b6-42df-9968-533d153e7a64&quot;
+## 
+## $id
+## [1] &quot;bb4bd396-83b6-42df-9968-533d153e7a64&quot;</code></pre>
+<pre class="r"><code>rsc = rs$client
+rsc$navigate(&quot;https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8&quot;)</code></pre>
+<p>“rsc = rs<span class="math inline">\(client&quot; shorten access to client (webbrowser?) &quot;rsc\)</span>navigate” navigate to indicated site</p>
+<p>retrieve page source (that webpages sourcecode,info to display webpage) use Rvest to read the html code of that one page with R define lectures by scanning the defined url using css for the “video title”</p>
+<pre class="r"><code>ht=rsc$getPageSource()
+url= rvest::read_html(ht[[1]])
+lectures= html_elements(url, css = &#39;#video-title&#39;)</code></pre>
+<p>extract plain text from lectures html code define as lec_names extract the links (href)on lecture area /w html_attr attach youtube web address to links extracted</p>
+<pre class="r"><code>lec_names= html_text2(lectures)
+lec_links=html_attr(lectures, &quot;href&quot;)
+lec_links_full = paste0(&quot;https://www.youtube.com&quot;, lec_links)</code></pre>
+<p>at this point the selenium server has been uploaded and used firefox to scan the webpage for the lectures scraping the names and links</p>
+<p>instruct rvest to get a view count of one link define url2 as a command to read the html code for the links collected and appended /w lec_links_full (designate target) then define x as scanning url2 for css (#info) css cascading style sheets are html language use to style info/elements on a page</p>
+<pre class="r"><code>url2 = read_html(lec_links_full[1])
+x = html_elements(url2, css = &quot;#info&quot;)</code></pre>
 </div>
 
 
