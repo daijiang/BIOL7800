@@ -213,6 +213,9 @@ library(RSelenium)</code></pre>
 <pre><code>## BEGIN: PREDOWNLOAD</code></pre>
 <pre><code>## BEGIN: DOWNLOAD</code></pre>
 <pre><code>## BEGIN: POSTDOWNLOAD</code></pre>
+<pre><code>## Warning in wdman::selenium(port = port, verbose = verbose, version = version, :
+## No output to stderr yet detected. Please check log and that process is running
+## manually.</code></pre>
 <pre><code>## [1] &quot;Connecting to remote server&quot;
 ## $acceptInsecureCerts
 ## [1] FALSE
@@ -236,10 +239,10 @@ library(RSelenium)</code></pre>
 ## [1] FALSE
 ## 
 ## $`moz:processID`
-## [1] 22176
+## [1] 8396
 ## 
 ## $`moz:profile`
-## [1] &quot;C:\\Users\\derek\\AppData\\Local\\Temp\\rust_mozprofileW9e3sO&quot;
+## [1] &quot;C:\\Users\\derek\\AppData\\Local\\Temp\\rust_mozprofileeRlkJi&quot;
 ## 
 ## $`moz:shutdownTimeout`
 ## [1] 60000
@@ -283,13 +286,13 @@ library(RSelenium)</code></pre>
 ## [1] &quot;dismiss and notify&quot;
 ## 
 ## $webdriver.remote.sessionid
-## [1] &quot;bb4bd396-83b6-42df-9968-533d153e7a64&quot;
+## [1] &quot;d303f447-18c3-4ad4-933f-196d5e0a0232&quot;
 ## 
 ## $id
-## [1] &quot;bb4bd396-83b6-42df-9968-533d153e7a64&quot;</code></pre>
+## [1] &quot;d303f447-18c3-4ad4-933f-196d5e0a0232&quot;</code></pre>
 <pre class="r"><code>rsc = rs$client
 rsc$navigate(&quot;https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8&quot;)</code></pre>
-<p>“rsc = rs<span class="math inline">\(client&quot; shorten access to client (webbrowser?) &quot;rsc\)</span>navigate” navigate to indicated site</p>
+<p><code>&quot;rsc = rs$client&quot;</code> shorten access to client (webbrowser that you open) <code>rsc$navigate</code> navigate to indicated site</p>
 <p>retrieve page source (that webpages sourcecode,info to display webpage) use Rvest to read the html code of that one page with R define lectures by scanning the defined url using css for the “video title”</p>
 <pre class="r"><code>ht=rsc$getPageSource()
 url= rvest::read_html(ht[[1]])

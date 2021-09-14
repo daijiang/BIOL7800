@@ -76,3 +76,26 @@ css cascading style sheets are html language use to style info/elements on a pag
 url2 = read_html(lec_links_full[1])
 x = html_elements(url2, css = "#info")
 ```
+direct the client browser to the lecture links ammassed and appended `lec_links_full`get the source code, html, of that page with `getPageSource()` label as ht2 
+ht is the source code of (https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8)
+instruct rvest n "ok2" to read the html code of the source code of the lec links full page
+```{r}
+rsc$navigate(lec_links_full[1])
+ht2=rsc$getPageSource()
+ok2<- rvest::read_html(ht2[[1]])
+```
+
+
+define view as scanning the `lec_links_full` source code for css html code corresponding to ".ytd-video-view-count-renderer" (year to date format video view count element to be rendered for webpage)
+define "viewcount" as the retrival of the raw text of the designated element (view[1])
+
+use gsub for view_count, search for ",| views" replace with "" and make numeric value
+
+```{r}
+view= html_elements(ok2, css=".ytd-video-view-count-renderer" )
+view_count= html_text(view[1])
+view_count
+as.numeric(gsub(",| views","",view_count))
+
+```
+![](rvestlogo.png)![](~/R/Tuitorial_practice/githubimage.png)        
