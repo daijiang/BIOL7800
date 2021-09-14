@@ -96,6 +96,5 @@ view= html_elements(ok2, css=".ytd-video-view-count-renderer" )
 view_count= html_text(view[1])
 view_count
 as.numeric(gsub(",| views","",view_count))
-
 ```
 ![](rvestlogo.png)![](~/R/Tuitorial_practice/githubimage.png)        
