@@ -34,5 +34,11 @@ contact me "via" [linkedIn](www.linkedin.com/in/derek-bratcher)
 [github](https://github.com/Deebee33) ![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.46goeWrG5eWVufJGs5vjVwHaEK%26pid%3DApi&f=1)
  
 6. Also insert bash chunks to print out the versions of git and R installed on your computer.
+```{r}
+R <- sessionInfo()
+R 
+git --version
+```
+
    + `Rstudio 1.4.1717`
    + `gitdesktop 2.9.2`
