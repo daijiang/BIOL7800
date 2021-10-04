@@ -42,3 +42,32 @@ x[is.na(x)] = 0
 ```
 In R a matrix must be a two dimensional data strucutre of homgenous elements. first x was set as a matrix with 3 rows and based on the elements provided the length was inferred by prioritizing the dimensions then the data. with 9 elements and three rows specified 3 columns was determined. because byrow wasnt specified (`byrow = TRUE`)the matrix was filled columnwise.
 then with `is.na(x)` all NA values of matrix X were designated as zero
+
+5. (3 points) Load the Car Road Tests dataset (in R, run `data("mtcars"), ?mtcars)`, then add a new column named as `mpg_2` for the mtcars data frame. You can use if ... else ... or ifelse or any other functions that can get the job done. This new column will categorize mpg into four categories using the thresholds below:mpg_2
+(low- mpg<16, low_intermediate 16 <= mpg < 21, intermediate_high 21 <= mpg < 26,high 26 <= mpg)
+
+```{r}
+mtcars |> mutate (mpg_2 = dplyr::case_when(
+  mtcars$mpg < 16 ~ "low",
+   mtcars$mpg < 21  ~ "low_intermediate",
+   mtcars$mpg < 25  ~ "intermediate_high",
+    mtcars$mpg >= 26 ~ "high",
+  TRUE ~ "A"
+))
+
+```
+
+```{r}
+
+mtcars3 <- mtcars |> mutate( mpg2= (mtcars$mpg))
+mtcars3$mpg2 <-
+  ifelse(mtcars3$mpg2 < 16, "low",
+ifelse(mtcars3$mpg2 < 20, "low_intermediate", 
+ifelse(mtcars3$mpg2 < 25, "intermediate_high",
+ifelse(mtcars3$mpg2 < 34, "high", mtcars3$mpg2))))
+mtcars3
+```
+
+
+
+
