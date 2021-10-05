@@ -7,19 +7,20 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(rmarkdown)
 ```
 
 > #Loops
 
  <br>
-###Loops repeat two steps: evaluation and execution. For evaluation, we tell the computer to test for a specific condition, and there are two outcomes of this evaluation: condition satisfied and not satisfied. Then for each scenario, we can let the computer know what to do respectively.###
+__Loops repeat two steps: evaluation and execution. For evaluation, we tell the computer to test for a specific condition, and there are two outcomes of this evaluation: condition satisfied and not satisfied. Then for each scenario, we can let the computer know what to do respectively.__
 
 R provides three types of loops
 + for
 + while
 + repeat
 
-###Repeat
+###Repeat###
 
 ```{r}
 # 1st set parameters
@@ -40,6 +41,24 @@ repeat
   break
   else
     print(D); D <- D + 3}
+
+```
+
+formula
+designate variables <-with value
+designate this is a repeating loop
+{ if (condition to break loop)
+break
+else
+operation to perform ; function to run with designated variable}
++ start with your variables
++ specify this as a repeating loop
++specify with "if" (what breaks the loop)
++ break 
++ else (otherwise)
++ print/designate what to do with data 
+
+
 
 ```
 
