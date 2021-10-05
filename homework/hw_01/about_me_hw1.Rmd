@@ -37,7 +37,7 @@ contact me "via" [linkedIn](www.linkedin.com/in/derek-bratcher)
 ```{r}
 R <- sessionInfo()
 R 
-git --version
+
 ```
 
    + `Rstudio 1.4.1717`

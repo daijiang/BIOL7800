@@ -1,3 +1,2 @@
-control flow
-scripting
-setting up a command to run if certain conditions are met or until a condition/value reached
+#Loops
++ ###Loops repeat two steps: evaluation and execution. For evaluation, we tell the computer to test for a specific condition, and there are two outcomes of this evaluation: condition satisfied and not satisfied. Then for each scenario, we can let the computer know what to do respectively.
