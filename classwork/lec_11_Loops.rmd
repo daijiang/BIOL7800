@@ -32,6 +32,16 @@ repeat
     print (x); x <- x + 5}
 #check if x > 25, if so stop/break, otherwise repeat printing the outcome of the function x + 5 
 ```
+Print first five multiples of 3 using repeat loop.
+```{r}
+D <- 3
+repeat
+{ if (D > 15)
+  break
+  else
+    print(D); D <- D + 3}
+
+```
 
 ###While
 
@@ -45,9 +55,12 @@ while(x <= 25) {
 }
 
 ```
-
+set values to be used x is 5
+set condition while x is less than or equal to 25
+set the then to run when cond is met, print x also increase x by 5 
+this directs the loop to check if x is less than on equal to 25 then print then increase by 5 then repeat the loop with another comparisson to 25
 ```{r}
-#while loop 2 calc sum of 1st 10 numbers
+#while loop to calc sum of 1st 10 numbers
 #store first number as a variable
 uno = 1
 # store sum of loop
@@ -61,7 +74,9 @@ while(uno <= 10){
   uno = uno + 1
 }
 print(total)
+#loop should run 0+1,1+2,2+3... till uno reaches 10
 ```
+
 first in setting out to calc sum of 1st 10 numbers I declared to variables, uno, my starting number and total, my sum of adding each number. my condition is within my while statement (uno has to be <= 10)
 the while loop will start at uno adding to the total to get the new total increasing incrementally by 1 until uno is nolonger <= 10
 
