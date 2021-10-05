@@ -101,3 +101,22 @@ This loop only prints the odd numbers in the range of 5 to 10. To do this, we ha
 + if number is divisible by 2, then its value is simply incremented by 1 and the iteration is skipped using the next statement.
 + if number is not divisible by 2, then the variable is printed and its value is incremented by 1.
 
+\n new line \t is tab 
+
+```{r}
+a <- c(2, 6)
+for (i in 1:2) {
+  print(paste('i', '=', i, sep=' ')) 
+  print(paste(c('a', '=', a), collapse=' ')) 
+  cat('execution\n') 
+  a[i] <- a[i] + 10 
+  print(paste(c('a', '=', a), collapse=' ')) 
+  print(paste('i', '=', i, sep=' ')) 
+  cat('next\n\n') 
+}
+```
+```{r}
+
+```
+
+hw 3 using loops on arrays

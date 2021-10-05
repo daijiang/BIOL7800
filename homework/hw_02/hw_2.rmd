@@ -6,12 +6,13 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, eval = TRUE)
 ```
 
 1. (2 points) Fix each of the following common data frame subsetting errors:
 
 ```{r}
+library(tidyverse,dplyr)
 #fix mtcars[mtcars$cyl < 6]
 subset(mtcars, cyl < 6)
 mtcars[mtcars$cyl < 6, ]
@@ -47,25 +48,25 @@ then with `is.na(x)` all NA values of matrix X were designated as zero
 (low- mpg<16, low_intermediate 16 <= mpg < 21, intermediate_high 21 <= mpg < 26,high 26 <= mpg)
 
 ```{r}
-mtcars |> mutate (mpg_2 = dplyr::case_when(
+mtcars1<- mtcars |> dplyr::mutate (mpg_2 = dplyr::case_when(
   mtcars$mpg < 16 ~ "low",
    mtcars$mpg < 21  ~ "low_intermediate",
    mtcars$mpg < 25  ~ "intermediate_high",
     mtcars$mpg >= 26 ~ "high",
   TRUE ~ "A"
 ))
-
+glimpse(mtcars1)
 ```
 
 ```{r}
 
-mtcars3 <- mtcars |> mutate( mpg2= (mtcars$mpg))
+mtcars3 <- mtcars |> dplyr::mutate( mpg2= (mtcars$mpg))
 mtcars3$mpg2 <-
   ifelse(mtcars3$mpg2 < 16, "low",
 ifelse(mtcars3$mpg2 < 20, "low_intermediate", 
 ifelse(mtcars3$mpg2 < 25, "intermediate_high",
 ifelse(mtcars3$mpg2 < 34, "high", mtcars3$mpg2))))
-mtcars3
+glimpse(mtcars3)
 ```
 
 
