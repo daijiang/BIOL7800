@@ -120,3 +120,9 @@ for (i in 1:2) {
 ```
 
 hw 3 using loops on arrays
+resources
+https://www.programiz.com/r/while-loop
+https://www.guru99.com/r-for-loop.html
+http://adv-r.had.co.nz/Subsetting.html
+https://riptutorial.com/r/example/2047/subsetting-rows-and-columns-from-a-data-frame
+https://r4ds.had.co.nz/tidy-data.html
