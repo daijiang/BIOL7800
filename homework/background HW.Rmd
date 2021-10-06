@@ -1,0 +1,38 @@
+---
+title: "HW_03"
+author: "DerekRBratcher"
+date: "10/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Homework 3
+1. (2 points) Suppose we have a dataset A (see code below) where each column represents multiple measures of nitrogen concentration in a particular lake. We want to get the average value for each lake. Do this in two ways: a `for` loop and a vectorized function `colMeans()`.
+```{r}
+set.seed(12) # to be reproducible
+A = matrix(data = 1:500, nrow = 50, ncol = 10)
+colnames(A) = paste("lake", 1:10, sep = "_")
+```
+(sidenote) set seed- When you generate “random numbers” in R, you are actually generating pseudorandom numbers. These numbers are generated with an algorithm that requires a seed(integer argument) to initialize. Being pseudorandom instead of pure random means that, if you know the seed and the generator, you can predict (and reproduce) the output.
+The purpose of the R `set.seed` function is to allow you to set a seed and a generator (with the kind argument) in R.
+`set.seed` is to arrange to create a vector of pseudorandomly ordered numbers by the random number generator (RNG) assigned to the integer argument
+you have to recall that seed "12" with set seed to recall that sequence of 50 numbers
+```{r}
+set.seed(12)
+x<- rnorm(50)
+```
+lines 15-16 set the matrix parameters. elements 1:500, number of rows 50, number of columns 10, column names number 1-10 and lake separated by an _
+
+one can use set.seed to pull random observations from the newly made dataset
+```{r}
+#set seed to assign the RNG to 45 when generating 5 random observations from dataset A 
+
+set.seed(45)
+rndm<- sample(1:nrow(A), 5)
+rndm
+# you can use the following to call the whole row of the random values
+A[rndm,]
+```
+
