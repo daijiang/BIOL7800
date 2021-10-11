@@ -59,19 +59,22 @@ for (i in x1) {
 
 ```{r}
 #set up a numeric vector of 40 elements and assign to fibonacci
-Fibonacci<- numeric(40)
+Fibonacci<- numeric(30)
 #make the first two elements 1
 Fibonacci[1]<- Fibonacci[2]<- 1
-i<- Fibonacci[1]
 #set up loop applying formula at 3-30
-for (i in seq_along(Fibonacci)) { 
-  Fibonacci[i]<- Fibonacci[i-2] + Fibonacci[i-1]
+for (i in 3:30) { 
+  Fibonacci[i]<- Fibonacci[i - 2] + Fibonacci[i - 1]
   print("The First 30 Fibonaci numbers")
   print(Fibonacci)
 }
 
 
 ```
-
+(2 points) In the example data below, extract those ranking numbers with _regular expression_. The results should have the number(s) and . if it follows after the numbers immediately (i.e., `1., 12., 105., 105.3`, etc.). Remove empty strings from the final results. You should get 107 strings for your results.
+```{r}
+top105 = readLines("http://www.textfiles.com/music/ktop100.txt")
+top105 = top105[-c(64, 65)] # missing No. 54 and 55
+```
 
  
