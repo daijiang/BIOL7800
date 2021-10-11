@@ -55,7 +55,7 @@ for (i in x1) {
 
 
 
-(2 points) The Fibonacci Sequence is the series of numbers that the next number is the sum of the previous two numbers: 0, 1, 1, 2, 3, 5, 8 … Use a for loop to get the first 30 numbers of the Fibonacci Sequence. This question should demonstrate the need for loops because there is no easy way to use vectorized functions in this case.
+3. (2 points) The Fibonacci Sequence is the series of numbers that the next number is the sum of the previous two numbers: 0, 1, 1, 2, 3, 5, 8 … Use a for loop to get the first 30 numbers of the Fibonacci Sequence. This question should demonstrate the need for loops because there is no easy way to use vectorized functions in this case.
 
 ```{r}
 #set up a numeric vector of 40 elements and assign to fibonacci
@@ -71,10 +71,31 @@ for (i in 3:30) {
 
 
 ```
-(2 points) In the example data below, extract those ranking numbers with _regular expression_. The results should have the number(s) and . if it follows after the numbers immediately (i.e., `1., 12., 105., 105.3`, etc.). Remove empty strings from the final results. You should get 107 strings for your results.
+4. (2 points) In the example data below, extract those ranking numbers with _regular expression_. The results should have the number(s) and . if it follows after the numbers immediately (i.e., `1., 12., 105., 105.3`, etc.). Remove empty strings from the final results. You should get 107 strings for your results. 
+add 54. Electronic - Tighten Up and 55. Enigma - Sadeness (Part 1)
 ```{r}
 top105 = readLines("http://www.textfiles.com/music/ktop100.txt")
 top105 = top105[-c(64, 65)] # missing No. 54 and 55
+top105
+top_105_ranking_numbers <- str_sub(top105,start = 1, end =  5)
+top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:alpha:]]",replacement =  " ", x = top_105_ranking_numbers)
+top_105_ranking_numbers<- sub("@", "", top_105_ranking_numbers, fixed = TRUE)
+ top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:blank:]]",replacement =  "", x = top_105_ranking_numbers)
+top_105_ranking_numbers<- str_replace_all( top_105_ranking_numbers,":", "")
+
+library(stringi)
+top_105_ranking_numbers<- stri_remove_empty(top_105_ranking_numbers, na_empty = FALSE)
+top_105_ranking_numbers<- sub("3..", "3.", top_105_ranking_numbers, fixed = TRUE)
+top_105_ranking_numbers<- sub("5..", "5.", top_105_ranking_numbers, fixed = TRUE)
+top_105_ranking_numbers
+```
+5. (2 points) For the vector with length of 107 you got from question 4, remove all trailing .. (hint: `?sub`). Then convert it to a numeric vector and find out which numbers have duplications (i.e., a tie in ranking). Don’t count by eyes, use R to find it out (hint: `table(), sort(); or duplicated(), which(), [` subsetting; there are more than one way to do so).
+
+```{r}
+top_105_ranking_numbers<- as.numeric(top_105_ranking_numbers)
+table(duplicated(top_105_ranking_numbers))
+table(top_105_ranking_numbers)
+
 ```
 
- 
+ duplicates @ 83,91,97.

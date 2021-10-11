@@ -146,3 +146,20 @@ for (i in 3:40)  {
 }
 
 ```
+4. (2 points) In the example data below, extract those ranking numbers with _regular expression_. The results should have the number(s) and . if it follows after the numbers immediately (i.e., `1., 12., 105., 105.3`, etc.). Remove empty strings from the final results. You should get 107 strings for your results.
+add 54. Electronic - Tighten Up and 55. Enigma - Sadeness (Part 1)
+```{r}
+top105
+top_105_ranking_numbers <- str_sub(top105,start = 1, end =  5)
+top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:alpha:]]",replacement =  " ", x = top_105_ranking_numbers)
+ top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:blank:]]",replacement =  "", x = top_105_ranking_numbers)
+top_105_ranking_numbers<- str_replace( top_105_ranking_numbers,"@", "")
+top_105_ranking_numbers<- str_replace( top_105_ranking_numbers,":", "")
+top_105_ranking_numbers<- str_replace( top_105_ranking_numbers,"..", ".")
+library(stringi)
+top_105_ranking_numbers<- stri_remove_empty(top_105_ranking_numbers, na_empty = FALSE)
+top_105_ranking_numbers<- sub("3..", "3.", top_105_ranking_numbers, fixed = TRUE)
+top_105_ranking_numbers<- sub("5..", "5.", top_105_ranking_numbers, fixed = TRUE)
+
+```
+
