@@ -25,7 +25,7 @@ x<- rnorm(50)
 ```
 lines 15-16 set the matrix parameters. elements 1:500, number of rows 50, number of columns 10, column names number 1-10 and lake separated by an _
 
-one can use set.seed to pull random observations from the newly made dataset
+one can use set.seed to pull pseudorandom observations for the newly made dataset
 ```{r}
 #set seed to assign the RNG to 45 when generating 5 random observations from dataset A 
 
@@ -34,7 +34,7 @@ rndm<- sample(1:nrow(A), 5)
 rndm
 # you can use the following to call the whole row of the random values
 A[rndm,]
-
+#for each column in matrix A print the avg of that column 
 for(i in 1:ncol(A)){
   print(mean(A[ ,i]))
 }
@@ -117,10 +117,10 @@ print(output)
 
 
 #label each dimension of array 
-x1 <- x[ 1, 1, 1:3]
-x2 <- x[2, 2, 2:3]
-x3 <- x[3, 3, 3]
-i <- x[ , , 1:3]
+x1 <- x[ 1:3, 1:3, 1]
+x2 <- x[1:3, 1:3, 2]
+x3 <- x[1:3, 1:3, 3]
+i <- x[ 3, 3, 1:3]
 for (i in x1) {
   for (i in x2) 
     for (i in x3) {
@@ -128,6 +128,16 @@ for (i in x1) {
     }
   }
   
+
+x1 <- x[1:3, 1:3, 1]
+x2 <- x[1:3, 1:3, 2]
+x3 <- x[1:3, 1:3, 3]
+for (i in x1) {
+   for (i in x2) 
+     for (i in x3) {
+  print(paste(x1, x2, x3, sep = ", "))
+    }
+  }
 
 
 ```

@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+#Web scraping and API
+
+```{r}
+# on startup install following
+librarian:: lib_startup("httr", "RSelenium", "rvest", "RCurl", lib = "/home/derek/R/x86_64-pc-linux-gnu-library/4.1", global = FALSE)
+#set up the list of packages required
+packages12 <- c( "httr", "Rselenium", "rvest", "RCurl", "dplyr")
+#set up a vector for checking on the installation of packages req
+# define lesson12 packages as containing packages12
+lesson12_packages<- packages12 %in% rownames(lesson12_packages)
+# then if any packages12 missing from lesson12_packages install missing lesson 12 packages
+if (any(lesson12_packages == FALSE)) {
+  install.packages(packages12[!lesson12_packages])
+}
+
+
+```
+
+
+
+Task: to extract all titles of the Web Scrapping Wiki page (bold headings)
+```{r}
+#pull the webscraping webpage ad assign the raw data to "wiki"
+wiki = read_html("https://en.wikipedia.org/wiki/Web_scraping")
+#then find elements that match the css selector element for table of contents based on "inspect"
+wiki %>% 
+  html_elements(css = c("div#toc.toc"))
+
+```
+css cascading style sheets are html language use to style info/elements on a page
+
+```{r}
+
+x= c("1 history", "2tech", "2.1 copy", "2.2 paste")
+grep("\\d\\.*\\d*", x, value = T)
+stringr::str_view(x, "\\d\\d?")
+```
+\\d = match a digit character
+\\.* = match metacharacter "." 0 or more times (*=optional)
+\\d* = match digit character 0 or more times
+subject = vector x
+match all values that ring TRUE with search
+str_view = view first match in vector x for digit character, atmost one meta character(.?) atmost one digit character
+
