@@ -39,16 +39,15 @@ apply(X = x, MARGIN = c(1, 2),
 Now, use `for` loops to get the same task done (hint: nested loops). The results should be the same. 
 
 ```{r}
-x1 <- x[ 1, 1, 1:3]
-x2 <- x[2, 2, 2:3]
-x3 <- x[3, 3, 3]
+x1 <- x[ 1:3, 1:3, 1]
+x2 <- x[1:3, 1:3, 2]
+x3 <- x[1:3, 1:3, 3]
 for (i in x1) {
   for (i in x2) 
     for (i in x3) {
-  print(paste(x1, x2, x3, sep = ", "))
     }
   }
-  
+   print(paste(x1, x2, x3, sep = ", "))
 
 #how do i direct my loop to print by dimension??
 ```
@@ -61,14 +60,13 @@ for (i in x1) {
 #set up a numeric vector of 40 elements and assign to fibonacci
 Fibonacci<- numeric(30)
 #make the first two elements 1
-Fibonacci[1]<- Fibonacci[2]<- 1
+Fibonacci[[1]]<- Fibonacci[[2]]<- 1
 #set up loop applying formula at 3-30
-for (i in 3:30) { 
-  Fibonacci[i]<- Fibonacci[i - 2] + Fibonacci[i - 1]
-  print("The First 30 Fibonaci numbers")
-  print(Fibonacci)
+for (i in 3:length(Fibonacci)) { 
+  Fibonacci[i]<- Fibonacci[i-2] + Fibonacci[i-1]
 }
-
+print("The First 30 Fibonaci numbers")
+ print(Fibonacci)
 
 ```
 4. (2 points) In the example data below, extract those ranking numbers with _regular expression_. The results should have the number(s) and . if it follows after the numbers immediately (i.e., `1., 12., 105., 105.3`, etc.). Remove empty strings from the final results. You should get 107 strings for your results. 
@@ -77,14 +75,14 @@ add 54. Electronic - Tighten Up and 55. Enigma - Sadeness (Part 1)
 top105 = readLines("http://www.textfiles.com/music/ktop100.txt")
 top105 = top105[-c(64, 65)] # missing No. 54 and 55
 top105
-top_105_ranking_numbers <- str_sub(top105,start = 1, end =  5)
+top_105_ranking_numbers <-stringr::str_sub(top105,start = 1, end =  5)
 top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:alpha:]]",replacement =  " ", x = top_105_ranking_numbers)
 top_105_ranking_numbers<- sub("@", "", top_105_ranking_numbers, fixed = TRUE)
  top_105_ranking_numbers <- top_105_ranking_numbers |>  gsub(pattern = "[[:blank:]]",replacement =  "", x = top_105_ranking_numbers)
-top_105_ranking_numbers<- str_replace_all( top_105_ranking_numbers,":", "")
+top_105_ranking_numbers<- stringr::str_replace_all( top_105_ranking_numbers,":", "")
 
 library(stringi)
-top_105_ranking_numbers<- stri_remove_empty(top_105_ranking_numbers, na_empty = FALSE)
+top_105_ranking_numbers<- stringi::stri_remove_empty(top_105_ranking_numbers, na_empty = FALSE)
 top_105_ranking_numbers<- sub("3..", "3.", top_105_ranking_numbers, fixed = TRUE)
 top_105_ranking_numbers<- sub("5..", "5.", top_105_ranking_numbers, fixed = TRUE)
 top_105_ranking_numbers
