@@ -2,33 +2,50 @@
 title: "HW_03"
 author: "DerekRBratcher"
 date: "10/7/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Homework 3
-1. (2 points) Suppose we have a dataset A (see code below) where each column represents multiple measures of nitrogen concentration in a particular lake. We want to get the average value for each lake. Do this in two ways: a `for` loop and a vectorized function `colMeans()`.
+# __Homework 3__  
+
+
+ 1. (2 points) Suppose we have a dataset A (see code below) where each column represents multiple measures of nitrogen concentration in a particular lake. We want to get the average value for each lake. Do this in two ways: a `for` loop and a vectorized function `colMeans()`.
 ```{r}
 set.seed(12) # to be reproducible
 A = matrix(data = runif(n =1:500), nrow = 50, ncol = 10)
 colnames(A) = paste("lake", 1:10, sep = "_")
 ```
 
-find mean via `for` loop
+   + find mean via `for` loop
 ```{r}
 for(i in 1:ncol(A)){
   print(mean(A[ ,i]))
 }
 ```
- find mean via `colMeans()`
+ 
+ 
+  + find mean via `colMeans()`
  
 
 ```{r}
 colMeans(A)
 ```
+
+
+
+
+
+
+
+
+
+
+
 2. (2 points) From the for loop lecture, we see the following example of using apply():
  
 ```{r}
@@ -36,7 +53,7 @@ x = array(1:27, dim = c(3, 3, 3))
 apply(X = x, MARGIN = c(1, 2), 
       FUN = paste, collapse = ", ")
 ```
-Now, use `for` loops to get the same task done (hint: nested loops). The results should be the same. 
+ + Now, use `for` loops to get the same task done (hint: nested loops). The results should be the same. 
 
 ```{r}
 x1 <- x[ 1:3, 1:3, 1]
@@ -47,7 +64,7 @@ for (i in x1) {
     for (i in x3) {
     }
   }
-   print(paste(x1, x2, x3, sep = ", "))
+   print(as.array(paste(x1, x2, x3, sep = ", ")))
 
 #how do i direct my loop to print by dimension??
 ```
