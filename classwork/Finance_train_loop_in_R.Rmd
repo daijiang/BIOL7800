@@ -63,9 +63,14 @@ set the image in images folder of wd (~/Documents/GitHub/Biol7800/classwork/imag
 init- initialization this is the beginning 
 init is where the instructions are evaluated (identify all values and vectors to be applied to) 
 
-the diamond- the condition to be applied is begun beginning the loop((for x values in vector) carry out x + m/ a or "v e seq" )  with each statement/expression
+the diamond- the condition to be applied is begun, beginning the loop((for x values in vector) carry out "x + m/ a" or "v e seq" )  with each statement/expression
 "v e seq"- does the variable `v`’s current value belong to the sequence `seq`?”
-in this case does the variables value fall in the range of parameters set in vector of 1st step
+in this case does the variables value fall in the range of parameters set in vector of 
+
+> 1st step
++ if false break loop
++ if true carry out iteration one to end of set parameters
+
 ```{r}
 
 ```
