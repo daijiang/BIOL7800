@@ -58,7 +58,7 @@ prescribed number of times, as controlled by a counter or an index,
 incremented at each iteration cycle
 
 ![r loop structures](~/Documents/GitHub/Biol7800/classwork/images/loops_figs.png)
-set the image in images folder of wd (~/Documents/GitHub/Biol7800/classwork/images)
+sidenote--set the image in images folder of wd (~/Documents/GitHub/Biol7800/classwork/images)
 
 init- initialization this is the beginning 
 init is where the instructions are evaluated (identify all values and vectors to be applied to) 
