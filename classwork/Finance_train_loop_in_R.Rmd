@@ -50,12 +50,19 @@ for (i in 1:5)
     next  }
   print(paste( "this is step", i))}
 ```
-using next returns the machine to the begining of the loop to continue without ending cycle like break
+using next returns the machine to the beginning of the loop to continue without ending cycle like break
 A next statement is useful when we want to skip the current iteration of a loop without terminating it. On encountering next, the R parser skips further evaluation and starts next iteration of the loop.
 
 `for` loops execute for a
 prescribed number of times, as controlled by a counter or an index,
 incremented at each iteration cycle
+
+general formula
+"for" (variables in seq/vector){
+command 1
+}
+
+the command will be applied once to each variable in the seq
 
 ![r loop structures](~/Documents/GitHub/Biol7800/classwork/images/loops_figs.png)
 sidenote--set the image in images folder of wd (~/Documents/GitHub/Biol7800/classwork/images)
@@ -73,6 +80,17 @@ in this case does the variables value fall in the range of parameters set in vec
 
 ```{r}
 
+
+```
+its important when looping to create a empty vector to store results if not at final step
+
+```{r}
+storage<- numeric(5)
+for (i in 1:5) {
+storage[i]<- i^2  
+  
+}
+print(storage)
 ```
 
 
