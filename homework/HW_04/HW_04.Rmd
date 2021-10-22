@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. (3 points) Use the rvest R package to scrape the schedule and materials table into R from the course webpage (https://introdatasci.dlilab.com/schedule_materials/). Read the documentation of rvest so you get a better idea about the functions provided by rvest and their usages.
 ```{r}
+library(rvest)
 #designate the target /w read html and assign a name to the function
 dilab_sched_mats<-read_html("https://introdatasci.dlilab.com/schedule_materials/")
 
@@ -27,8 +28,21 @@ SnM_table <- dilab_sched_mats %>% html_elements("table") |> html_table()
 
 ```{r}
 library(dplyr)
+
+#extract days
+days<-stringi::stri_sub(SMdf[, 1], -2,)
+days<-as.numeric(days)
+SMdf_new <- cbind(SMdf, days)
+
 #create month columns
-Schedule/materials_df<- 'SMdf'|> mutate(Day = str_sub(Date, start = -2, end = -1))
+Month = case_when( 
+  starts_with(Date, "Se") ~ "September",
+  starts_with(Date, "Oc") ~ "October",
+  starts_with(Date, "No") ~ "November",
+  starts_with(Date, "De") ~ "December"
+  )
+Schedule/materials_df <- cbind(SMdf[, c(1, 2)], Day, Month)
+Schedule/materials_df<- 'SMdf'|> mutate(Day = str_sub(SMdf[1], start = -2, end = -1))
 #create day columns
 Schedule/materials_df<- 'S&Mdf' |>  mutate("S&Mdf$Month" = case_when( 
   starts_with(Date, "Se") ~ "September",
@@ -42,7 +56,7 @@ Schedule/materials_df
 #apply search for each month  then apply to month column
 #use mutate or transmute case when script
 
-
+gg
 
 ```
 
