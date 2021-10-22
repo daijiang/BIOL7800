@@ -1,0 +1,38 @@
+---
+title: "Hw4 unresolved"
+author: "DerekRBratcher"
+date: "10/22/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+2. (2 points) With the extracted data frame, create two new columns based on the Date column: month and day. month would be the month abbrevations from the Date column; day would be the numeric numbers from the Date column. Although you can use whatever approach to get this done (do not enter them by hand…), I suggest you try to practice regular expression here (sub() or stringr::str_extract()).
+
+
+Why doesnt this work and what would work 
+```{r}
+library(dplyr)
+Month = case_when( 
+  starts_with(Date, "Se") ~ "September",
+  starts_with(Date, "Oc") ~ "October",
+  starts_with(Date, "No") ~ "November",
+  starts_with(Date, "De") ~ "December"
+  )
+Schedule/materials_df <- cbind(SMdf[, c(1, 2)], Day, Month)
+Schedule/materials_df<- 'SMdf'|> mutate(Day = str_sub(SMdf[1], start = -2, end = -1))
+#create day columns
+Schedule/materials_df<- 'S&Mdf' |>  mutate("S&Mdf$Month" = case_when( 
+  starts_with(Date, "Se") ~ "September",
+  starts_with(Date, "Oc") ~ "October",
+  starts_with(Date, "No") ~ "November",
+  starts_with(Date, "De") ~ "December"
+  ))
+Schedule/materials_df
+#use regex to apply month an day entries to each column
+#apply a seach for digits for date column then apply numbers to day column
+#apply search for each month  then apply to month column
+#use mutate or transmute case when script
+```

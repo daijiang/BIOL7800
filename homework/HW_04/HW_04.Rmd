@@ -35,35 +35,32 @@ days<-as.numeric(days)
 SMdf_new <- cbind(SMdf, days)
 
 #create month columns
-Month = case_when( 
-  starts_with(Date, "Se") ~ "September",
-  starts_with(Date, "Oc") ~ "October",
-  starts_with(Date, "No") ~ "November",
-  starts_with(Date, "De") ~ "December"
-  )
-Schedule/materials_df <- cbind(SMdf[, c(1, 2)], Day, Month)
-Schedule/materials_df<- 'SMdf'|> mutate(Day = str_sub(SMdf[1], start = -2, end = -1))
-#create day columns
-Schedule/materials_df<- 'S&Mdf' |>  mutate("S&Mdf$Month" = case_when( 
-  starts_with(Date, "Se") ~ "September",
-  starts_with(Date, "Oc") ~ "October",
-  starts_with(Date, "No") ~ "November",
-  starts_with(Date, "De") ~ "December"
-  ))
-Schedule/materials_df
-#use regex to apply month an day entries to each column
-#apply a seach for digits for date column then apply numbers to day column
-#apply search for each month  then apply to month column
-#use mutate or transmute case when script
+Month<-stringi::stri_sub(SMdf[, 1], from = 1, to = -3)
+Month<- as.factor(Month)
+"SMdf+MD"<-cbind(SMdf_new, Month)
+'SMdf+MD'
 
-gg
+#not that it matters but how do you manipulate factor levels?
+#eliminate reading, notes, hw column 
 
 ```
 
 
 
-(2 points) With the data frame generated from Q2, use group_by() and summarise() to find out the number of lectures for each month, order the results by the number of lectures (high to low).
+3. (2 points) With the data frame generated from Q2, use group_by() and summarise() to find out the number of lectures for each month, order the results by the number of lectures (high to low).
+
+
+```{r}
+#use group by month, make table a variable
+
+#use summarize summarise(data, month count = count (month)
+
+
+
+```
 (3 points) For the Topic column, split all values into words (hint: stringr::str_split()). Observe the values in the Topic column and use regular expression to specify the pattern in the stringr::str_split() or strsplit() function. Once this is done, you should get a list of list, you can use unlist() to convert it into a vector and name it as words. Use table() and sort() to find the top 5 most frequent words.
+
+
 I was thinking to have a homework to get all plant occurrence data within Baton Rouge from GBIF. But it will require you to register an account and have account name and password when you use the rgbif package. This may have the risk of get your password leaked (you can avoid this by reading the documentation of rgbif); so I decided not to do so. If you are interested, you may want to run some example codes from the rgbif package’s documentation.
 
 This homework will be due at October 28th, 9am.
