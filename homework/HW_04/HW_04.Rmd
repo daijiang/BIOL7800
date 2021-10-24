@@ -39,7 +39,8 @@ SMdf_new <- cbind(SMdf, days)
 #create month columns
 Month<-stringi::stri_sub(SMdf[, 1], from = 1, to = -3)
 Month<- as.factor(Month)
-SMdf_MD<-cbind(SMdf_new, Month)
+Month_trim<- stringr::str_trim(Month, side = ("both"))
+SMdf_MD<-cbind(SMdf_new, Month_trim)
 view(SMdf_MD)
 
 #not that it matters but how do you manipulate factor levels?
@@ -54,15 +55,20 @@ view(SMdf_MD)
 
 ```{r}
 #use group by month, make table a variable
-lec_per_m<- SMdf_MD |>  group_by(Month) |> summarise( Month, n =n())
-#remove spacing to combine like catagoricals 
+lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n())
+#arrange or sort by n
 
-#use summarize summarise(data, month count = count (month)
+
 
 
 
 ```
 (3 points) For the Topic column, split all values into words (hint: stringr::str_split()). Observe the values in the Topic column and use regular expression to specify the pattern in the stringr::str_split() or strsplit() function. Once this is done, you should get a list of list, you can use unlist() to convert it into a vector and name it as words. Use table() and sort() to find the top 5 most frequent words.
+
+```{r}
+#use str_split to itemize each word into strings, make a list using regex and str_split, use unlist to make a vector then use table and sort to make a new table based on freq then sort to arrange by freq
+```
+
 
 
 I was thinking to have a homework to get all plant occurrence data within Baton Rouge from GBIF. But it will require you to register an account and have account name and password when you use the rgbif package. This may have the risk of get your password leaked (you can avoid this by reading the documentation of rgbif); so I decided not to do so. If you are interested, you may want to run some example codes from the rgbif package’s documentation.
