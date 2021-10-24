@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 1. (3 points) Use the rvest R package to scrape the schedule and materials table into R from the course webpage (https://introdatasci.dlilab.com/schedule_materials/). Read the documentation of rvest so you get a better idea about the functions provided by rvest and their usages.
+
+
 ```{r}
 library(rvest)
 #designate the target /w read html and assign a name to the function
@@ -26,9 +28,9 @@ SnM_table <- dilab_sched_mats %>% html_elements("table") |> html_table()
 ```
 2. (2 points) With the extracted data frame, create two new columns based on the Date column: month and day. month would be the month abbrevations from the Date column; day would be the numeric numbers from the Date column. Although you can use whatever approach to get this done (do not enter them by hand…), I suggest you try to practice regular expression here (sub() or stringr::str_extract()).
 
+
 ```{r}
 library(dplyr)
-
 #extract days
 days<-stringi::stri_sub(SMdf[, 1], -2,)
 days<-as.numeric(days)
@@ -37,8 +39,8 @@ SMdf_new <- cbind(SMdf, days)
 #create month columns
 Month<-stringi::stri_sub(SMdf[, 1], from = 1, to = -3)
 Month<- as.factor(Month)
-"SMdf+MD"<-cbind(SMdf_new, Month)
-'SMdf+MD'
+SMdf_MD<-cbind(SMdf_new, Month)
+view(SMdf_MD)
 
 #not that it matters but how do you manipulate factor levels?
 #eliminate reading, notes, hw column 
@@ -52,6 +54,8 @@ Month<- as.factor(Month)
 
 ```{r}
 #use group by month, make table a variable
+lec_per_m<- SMdf_MD |>  group_by(Month) |> summarise( Month, n =n())
+#remove spacing to combine like catagoricals 
 
 #use summarize summarise(data, month count = count (month)
 

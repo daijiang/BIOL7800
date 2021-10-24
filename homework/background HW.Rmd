@@ -193,3 +193,10 @@ top_105_ranking_numbers<- sub("5..", "5.", top_105_ranking_numbers, fixed = TRUE
 
 ```
 
+## other leads to consider
+
+https://github.com/STAT545-UBC
+https://github.com/datacarpentry
+https://github.com/swcarpentry
+https://github.com/UBC-MDS
+
