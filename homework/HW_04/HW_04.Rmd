@@ -26,6 +26,8 @@ SnM_table <- dilab_sched_mats %>% html_elements("table") |> html_table()
 'SMdf'<-as.data.frame(SnM_table)
 
 ```
+
+
 2. (2 points) With the extracted data frame, create two new columns based on the Date column: month and day. month would be the month abbrevations from the Date column; day would be the numeric numbers from the Date column. Although you can use whatever approach to get this done (do not enter them by hand…), I suggest you try to practice regular expression here (sub() or stringr::str_extract()).
 
 
@@ -55,18 +57,26 @@ view(SMdf_MD)
 
 ```{r}
 #use group by month, make table a variable
-lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n())
-#arrange or sort by n
-
-
-
-
+lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))
+lec_per_m
 
 ```
-(3 points) For the Topic column, split all values into words (hint: stringr::str_split()). Observe the values in the Topic column and use regular expression to specify the pattern in the stringr::str_split() or strsplit() function. Once this is done, you should get a list of list, you can use unlist() to convert it into a vector and name it as words. Use table() and sort() to find the top 5 most frequent words.
+
+
+
+4. (3 points) For the Topic column, split all values into words (hint: stringr::str_split()). Observe the values in the Topic column and use regular expression to specify the pattern in the stringr::str_split() or strsplit() function. Once this is done, you should get a list of list, you can use unlist() to convert it into a vector and name it as words. Use table() and sort() to find the top 5 most frequent words.
 
 ```{r}
 #use str_split to itemize each word into strings, make a list using regex and str_split, use unlist to make a vector then use table and sort to make a new table based on freq then sort to arrange by freq
+
+topic_wrds<-stringr::str_split(SMdf_MD$Topic, " ")
+#why doesnt following work help me understand subsetting
+test_subset<- stringr::str_split(SMdf_MD["Topic"], " ")
+#topic_wrds is now a list of strings each string corresponding to a topic and each character value is a word
+topic_wrds
+as_words<-unlist(topic_wrds)
+top5<-sort(prop.table(table(as_words)), decreasing = T)
+top5
 ```
 
 

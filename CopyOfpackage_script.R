@@ -1,4 +1,4 @@
-packages<- c("librarian", "dplyr", "forcats", "gapminder", "ggplot2", "readr", "rmarkdown", "assertive", "stringr","tibble", "tidyr", "tidyverse","datasets")
+packages<- c("librarian", "gitcreds", "dplyr", "forcats", "gapminder", "ggplot2", "readr", "rmarkdown", "assertive", "stringr","tibble", "tidyr", "tidyverse","datasets")
 # Install packages not yet installed
 #check for created group packages in the rownames of installed packages
 installed.packages<- packages %in% rownames(installed.packages())
@@ -10,4 +10,4 @@ if (any(installed.packages == FALSE)) {
 invisible(lapply(packages, library, character.only = TRUE))
 
 #Librarian automatically installs updates and loads R packages from CRAN Github and Bioconductor
-librarian::lib_startup(librarian, assertive, githubinstall, dplyr, forcats, gapminder, ggplot2, readr, rmarkdown, stringr, tibble, tidyr, tidyverse, datasets, devtools, lib = "/home/derek/R/x86_64-pc-linux-gnu-library/4.1", global = FALSE)
+librarian::lib_startup(librarian, gitcreds, assertive, githubinstall, dplyr, forcats, gapminder, ggplot2, readr, rmarkdown, stringr, tibble, tidyr, tidyverse, datasets, devtools, lib = "/home/derek/R/x86_64-pc-linux-gnu-library/4.1", global = FALSE)
