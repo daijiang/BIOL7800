@@ -77,6 +77,7 @@ topic_wrds
 as_words<-unlist(topic_wrds)
 top5<-sort(prop.table(table(as_words)), decreasing = T)
 top5
+#make a graph with ggplot?
 ```
 
 
