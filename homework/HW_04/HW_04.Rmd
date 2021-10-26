@@ -60,7 +60,7 @@ SMdf_MD_trim
 
 ```{r}
 #use group by month, make table a variable
-lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))
+lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))  
 lec_per_m
 
 ```
