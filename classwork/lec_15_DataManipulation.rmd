@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Data cleaning -- broad concepts and principles
 
-Today's topic is about data manipulation. Before we jump into the R functions, let's talk about what are data and data chain/wrokflow first.
+Today's topic is about data manipulation. Before we jump into the R functions, let's talk about what are data and data chain/workflow first.
 
 Data are a set of values of qualitative or quantitative variables collected through observations.
 
@@ -54,7 +54,8 @@ Summary here:
 
 Ok, with the above information, let's talk about data cleaning, which generally takes the most of project time (like 80%). This is probably because that data cleaning is hard to be generalized to every project. But there are some common principles. And below is an excellent [summary of data cleaning principles](https://kbroman.org/Talk_DataCleaning/data_cleaning_notes.pdf) provided by Dr. Karl Broman.
 
-![data clean principles](data_clean_principles.png)
+![data clean principles](images/data_clean_principals.png)
+be sure to make a images folder in wkdir to stash and access pics such that it is in the proj 
 
 Please do make sure to read his notes along with the slides.
  
