@@ -35,4 +35,5 @@ Schedule/materials_df
 #apply a seach for digits for date column then apply numbers to day column
 #apply search for each month  then apply to month column
 #use mutate or transmute case when script
+#mutate only for nonstrings?
 ```
