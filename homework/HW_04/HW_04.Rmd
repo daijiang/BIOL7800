@@ -42,11 +42,14 @@ SMdf_new <- cbind(SMdf, days)
 Month<-stringi::stri_sub(SMdf[, 1], from = 1, to = -3)
 Month<- as.factor(Month)
 Month_trim<- stringr::str_trim(Month, side = ("both"))
-SMdf_MD<-cbind(SMdf_new, Month_trim)
-view(SMdf_MD)
-
 #not that it matters but how do you manipulate factor levels?
+Months_<- factor(Month_trim, levels = c("Aug", "Sep", "Oct", "Nov", "Dec"))
+SMdf_MD<-cbind(SMdf_new, Months_)
+view(SMdf_MD)
 #eliminate reading, notes, hw column 
+SMdf_MD_trim<- SMdf_MD |> select(-Notes, -HW, -Reading)
+SMdf_MD_trim
+
 
 ```
 
