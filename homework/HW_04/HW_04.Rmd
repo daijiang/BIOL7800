@@ -45,7 +45,7 @@ Month_trim<- stringr::str_trim(Month, side = ("both"))
 #not that it matters but how do you manipulate factor levels?
 Months_<- factor(Month_trim, levels = c("Aug", "Sep", "Oct", "Nov", "Dec"))
 SMdf_MD<-cbind(SMdf_new, Months_)
-view(SMdf_MD)
+
 #eliminate reading, notes, hw column 
 SMdf_MD_trim<- SMdf_MD |> select(-Notes, -HW, -Reading)
 SMdf_MD_trim
