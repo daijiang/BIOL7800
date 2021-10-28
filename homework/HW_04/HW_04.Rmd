@@ -59,8 +59,9 @@ SMdf_MD_trim
 
 
 ```{r}
-#use group by month, make table a variable
-lec_per_m<- SMdf_MD |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))  
+#use group by month, the summarise to make new df with data from "month trim", count the number of months (n =()), only show distinct occurances with (distinct) and arrange in descending order make table a variable
+
+lec_per_m<- SMdf_MD_trim |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))  
 lec_per_m
 
 ```
@@ -68,6 +69,7 @@ lec_per_m
 
 
 4. (3 points) For the Topic column, split all values into words (hint: stringr::str_split()). Observe the values in the Topic column and use regular expression to specify the pattern in the stringr::str_split() or strsplit() function. Once this is done, you should get a list of list, you can use unlist() to convert it into a vector and name it as words. Use table() and sort() to find the top 5 most frequent words.
+
 
 ```{r}
 #use str_split to itemize each word into strings, make a list using regex and str_split, use unlist to make a vector then use table and sort to make a new table based on freq then sort to arrange by freq
@@ -79,8 +81,26 @@ test_subset<- stringr::str_split(SMdf_MD["Topic"], " ")
 topic_wrds
 as_words<-unlist(topic_wrds)
 top5<-sort(prop.table(table(as_words)), decreasing = T)
+top_5<-sort(table(as_words), decreasing = T)
 top5
+
 #make a graph with ggplot?
+top_5df<-data.frame(top_5)
+
+
+lapply(as_words, length)
+sort((as_words), decreasing = TRUE)
+
+librarian::shelf(tm)
+librarian::shelf(tau, plyr, readr, plotly)
+
+
+colnames(top_5df)<-c("word", "frequency")
+
+ggplot(top_5df, aes("word","frequency")) + geom_col()
+
+ggplot2::ggplot("top_5df", aes(x = top_5df$word, y = top_5df$X..i.., fill= "word")) + + geom_bar(width = 0.75,  stat = "identity", colour = "black", size = 1) + coord_polar(theta = "x") + xlab("") + ylab("") + ggtitle("Word Frequency") + theme(legend.position = "none") + labs(x = NULL, y = NULL)
+
 ```
 
 
