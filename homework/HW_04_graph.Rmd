@@ -110,8 +110,10 @@ librarian::shelf(tau, plyr, readr, plotly)
 colnames(top_5df)<-c("word", "frequency")
 
 ggplot(top_5df, aes("word","frequency")) + geom_col()
+top_5df13<-top_n(top_5df, 13)
 
-ggplot2::ggplot(top_5df, aes(word, frequency)) +  geom_bar(width = 0.75,  stat = "identity", colour = "black", size = 1) + coord_polar(theta = "x") + xlab("") + ylab("") + ggtitle("Word Frequency") + theme(legend.position = "none") + labs(x = NULL, y = NULL)
+word_freq_graph<- ggplot2::ggplot(top_5df13, aes(word, frequency, fill = word)) +  geom_bar(width = 0.75,  stat = "identity", size = 1) + coord_polar(theta = "x") + xlab("") + ylab("") + ggtitle("Word Frequency") + theme(legend.position = "bottom") + labs(x = NULL, y = NULL)
+word_freq_graph
 
 ```
 
