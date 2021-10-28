@@ -2,7 +2,10 @@
 title: "HW04"
 author: "DerekRBratcher"
 date: "10/21/2021"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -83,9 +86,18 @@ as_words<-unlist(topic_wrds)
 top5<-sort(prop.table(table(as_words)), decreasing = T)
 top_5<-sort(table(as_words), decreasing = T)
 top5
+#make a graph with ggplot?
+library(ggplot2)
+library(ggplot2)
+top5df <- data.frame(stringsAsFactors=FALSE,
+                 word = c("R", "and", "data", "with", "basics:", "Data", "project", "final"),                 freq = c(9, 8, 6, 6, 4, 4, 3, 3))
 
-
-
+graph_top5_wrds<-ggplot(top5df, aes(word, freq)) +
+geom_bar(stat="identity") +
+coord_flip() +
+labs(x = NULL, y = "Frequency") +
+labs(title="Top 5 words ")
+graph_top5_wrds
 ```
 
 
