@@ -9,19 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
----
-title: "Data visualization"
-author: "Daijiang Li"
-date: "10/28/2021"
-output: 
-  tufte::tufte_html: 
-    toc: yes
-    highlight: kate
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+next tuesday bring data sets to work on and get help discuss plans for dataset final proj
 
 R includes three major different packages (systems) for plotting data: `graphics`, `lattice`, and `ggplot2`. `graphics` comes with R and is referred as base R plotting. It is easy to customize or modify charts with the `graphics` package, or to interact with them on the screen (interactive plot). The `lattice` package contains an alternative set of functions for plotting data. `Lattice` graphics are well suited for splitting data by a conditioning variable and they used to be quite popular. The third package (or a system) is `ggplot2`, with `gg` stands for `grammar of graphics`. `ggplot2` is probably the most popular package for plotting nowadays; hundreds of extra packages build on it to extend its capacity, making it a well developed system for plotting. We thus will focus mostly on `ggplot2`.
 
@@ -34,7 +22,7 @@ Here, I will only introduce several commonly used plotting function from the bas
 
 To show a scatter plot, use the `plot` function.
 
-```r
+```{r}
 ?plot.default
 plot(x, y = NULL, type = "p", xlim = NULL, ylim = NULL, main = NULL, sub = NULL, 
      xlab = NULL, ylab = NULL, axes = TRUE, ...)
@@ -172,10 +160,11 @@ Use the following dataset to produce the figure below:
 ```{r}
 set.seed(123)
 d <- diamonds[sample(1:nrow(diamonds), 1000), ]
+d
 ```
 
 ```{r echo=FALSE}
-ggplot(data = d, aes(x = carat, y = price, color = color)) +
+ggplot(data = d) + aes(x = carat, y = price, color = color) +
   geom_point()
 ```
 
@@ -199,7 +188,7 @@ ggplot(as.data.frame(d2), aes(x = d2)) +
 ```{r}
 library(dplyr, warn.conflicts = FALSE)
 group_by(iris, Species) %>% summarise(l = sum(Sepal.Length))
-# bar plot
+# bar plot, geom applies summarise 
 ggplot(iris, aes(Species, Sepal.Length)) +
   geom_col()
 

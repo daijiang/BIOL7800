@@ -45,7 +45,7 @@ Month_trim<- stringr::str_trim(Month, side = ("both"))
 #not that it matters but how do you manipulate factor levels?
 Months_<- factor(Month_trim, levels = c("Aug", "Sep", "Oct", "Nov", "Dec"))
 SMdf_MD<-cbind(SMdf_new, Months_)
-view(SMdf_MD)
+
 #eliminate reading, notes, hw column 
 SMdf_MD_trim<- SMdf_MD |> select(-Notes, -HW, -Reading)
 SMdf_MD_trim
@@ -61,7 +61,7 @@ SMdf_MD_trim
 ```{r}
 #use group by month, the summarise to make new df with data from "month trim", count the number of months (n =()), only show distinct occurances with (distinct) and arrange in descending order make table a variable
 
-lec_per_m<- SMdf_MD_trim |>  group_by(Month_trim) |> summarise( Month_trim, n =n()) |> distinct() |>  arrange( desc( n))  
+lec_per_m<- SMdf_MD_trim |>  group_by(Months_) |> summarise( Months_, n =n()) |> distinct() |>  arrange( desc( n))  
 lec_per_m
 
 ```
@@ -72,6 +72,7 @@ lec_per_m
 
 
 ```{r}
+library(ggplot2)
 #use str_split to itemize each word into strings, make a list using regex and str_split, use unlist to make a vector then use table and sort to make a new table based on freq then sort to arrange by freq
 
 topic_wrds<-stringr::str_split(SMdf_MD$Topic, " ")
@@ -91,17 +92,16 @@ top5df <- data.frame(stringsAsFactors=FALSE,
                  freq = c(9, 8, 6, 6, 4, 4, 3, 3)
 )
 
-ggplot(top5df, aes(word, freq)) +
+simpletop5<-ggplot2::ggplot(top5df, aes(word, freq)) +
 geom_bar(stat="identity") +
 coord_flip() +
 labs(x = NULL, y = "Frequency") +
 labs(title="Top 5 words ")
 
-ggplot(top5df, aes(word, freq)) +          
+scatterplot<-ggplot2::ggplot(top5df, aes(word, freq)) +          
   geom_point()
 
-lapply(as_words, length)
-sort((as_words), decreasing = TRUE)
+
 
 librarian::shelf(tm)
 librarian::shelf(tau, plyr, readr, plotly)
@@ -109,14 +109,14 @@ librarian::shelf(tau, plyr, readr, plotly)
 
 colnames(top_5df)<-c("word", "frequency")
 
-ggplot(top_5df, aes("word","frequency")) + geom_col()
 top_5df13<-top_n(top_5df, 13)
 
 word_freq_graph<- ggplot2::ggplot(top_5df13, aes(word, frequency, fill = word)) +  geom_bar(width = 0.75,  stat = "identity", size = 1) + coord_polar(theta = "x") + xlab("") + ylab("") + ggtitle("Word Frequency") + theme(legend.position = "bottom") + labs(x = NULL, y = NULL)
 word_freq_graph
 
 ```
-
+fix
+ggplot2::ggplot(top_5df, aes("word","frequency")) + geom_col()
 
 
 I was thinking to have a homework to get all plant occurrence data within Baton Rouge from GBIF. But it will require you to register an account and have account name and password when you use the rgbif package. This may have the risk of get your password leaked (you can avoid this by reading the documentation of rgbif); so I decided not to do so. If you are interested, you may want to run some example codes from the rgbif package’s documentation.
