@@ -1,0 +1,71 @@
+---
+title: "regex exercise"
+author: "DerekRBratcher"
+date: "10/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+stringr package functions
+str_extract_all(string, pattern) this returns a vector of all pattern matches in a string
+str_replace_all(string, pattern, replacement) this function returns the string with replacements where the pattern described was determined
+
+```{r}
+ basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
+```
+If I want to pull every instance of one person’s name from this string, I would simply pass the name and basic_string to str_extract_all()
+
+```{r}
+Drewsinbasicstr<-str_extract_all(basicString, "Drew")
+```
+returns a list with one element [[1]]
+
+replace alex /w shawn
+```{r}
+replalex4shawn<-str_replace_all(basicString, "Alex", 'Shawn')
+```
+
+There are several stackable concepts that drive regex:
+Character sets
+Meta characters
+Quantifiers
+Capture Groups
+
+
+Character Sets 
+`"[aeiou]"` for vowels
+`"[0-9]"`  match any digit
+`"[a-z]"`  match any letter
+`[a-zA-Z0-9]` match all of the above
+`[^aeiou]` match anything but lowercase letters
+`[^0-9]`   match anything but a digit
+Character sets represent options inside of brackets, with regex matching only one of the options. 
+```{r}
+#extract all instances of vowels from basic string
+str_extract_all(basicString, "[aeiou]")
+```
+Match a range of characters: c-j
+
+```{r}
+#extract all instances of c to j lowercase from basic string
+str_extract_all(basicString, "[c-j]")
+```
+Character sets can contain everything from this section simultaneously, so something like [A-Ct-z7-9] is still valid. It will match every character from capital “A” to capital “C,” lowercase “t” to lowercase “z,” and 7 through 9.
+
+##Meta Characters
+Meta characters represent a type of character. They will typically begin with a backslash \. Since the backslash \ is a special character in R, it needs to be escaped each time it is used with another backslash. In other words, R requires 2 backslashes when using meta characters. Each meta character will match to a single character.
+
+\\s: This meta character represents spaces. This will match to each space, tab, and newline character. You may also specify \\t and \\n for tab and newline characters respectively. 
+
+Side note: our example string does not have any tabs, but be cautious when looking for them. Many integrated development environments, or IDE’s, have a setting that will replace all tabs with spaces while you are typing. 
+```{r}
+#extract all instances of a space in basic string
+str_extract_all(basicString, "\\s")
+```
+
+
+\\w: This meta character represents alphanumeric characters. This includes all the letters a-z, capital and lowercase, and the numbers 0–9. This would be the equivalent of the bracket group [A-Za-z0-9], just much quicker to write. Take caution in remembering that the \\w meta character on its own only captures a single character, not entire words or numbers. 
+

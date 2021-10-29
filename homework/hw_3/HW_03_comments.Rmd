@@ -136,7 +136,7 @@ top_105_ranking_numbers
 ```{r} 
 #alt filter strategy
 
-#use stringr and extract to search for the digits by seaching for traits shared only by digits
+#use stringr and extract to search for the digits by searching for traits shared only by digits
 alt<-stringr::str_extract((top105), pattern = "^\\d+\\.\\d?")
 na.omit(alt)
 alt[!is.na(alt)]

@@ -10,10 +10,63 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 In the neonDivData data package, there is a data frame named as data_plant. This data frame records plant coverage (percentage at 1 m^2^ scale indicated by the sample_area_m2 column) and plant presence information in larger plots (10 and 100 m^2^ indicated by the sample_area_m2 column). Use this data frame and functions we learned during lectures to do the steps below.
+```{r}
+library(neonDivData)
+data_plant
+#which allows us to see the first 6 rows by default. ill change to 12
+dpd<-head(data_plant, 12)
+#dim for dimensions displays the dimensions of the table rows     col
+dim(data_plant)
+#horizontal spread of data frame by cols and first several entries/obs
+glimpse(data_plant)
+#a breakdown of each column, if dbl/numeric an additional quantile analysis applied 
+summary(data_plant) 
+# run the skim function from the skimr package. It displays most of the numerical attributes from summary, but it also displays missing values, more quantile information and an inline histogram for each variable!
 
-(2 points) Create a new column named as genus for data_plant from the taxon_name column. The genus name is the first word of the scientific names. For example, if a record has taxon_name of "Bunchosia glandulosa (Cav.) DC.", then the genus is "Bunchosia". You probably want to use regular expression to do so. Take a look at all the names (sort(unique(data_plant$taxon_name))) to look at possible genus names and think about how to specify the regular expression pattern. Randomly select 100 values from the genus column and print it out.
+#the create_report function in the DataExplorer package. This awesome one line function will pull a full data profile of your data frame. It will produce an html file with the basic statistics, structure, missing data, distribution visualizations, correlation matrix and principal component analysis for your data frame! 
+```
 
-(2 points) Looking at the taxon_name values, it is clear that some scientific names probably are the same species (as different subspecies). For example, we may want to treat “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” as the same species. Create a new column taxon_name2 for data_plant based on taxon_name. taxon_name2 should just contain the first two words of taxon_name. For example, “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” should both be “Calamagrostis canadensis”. Randomly select 100 values from the taxon_name2 column and print it out.
+
+1. (2 points) Create a new column named as genus for data_plant from the taxon_name column. The genus name is the first word of the scientific names. For example, if a record has taxon_name of "Bunchosia glandulosa (Cav.) DC.", then the genus is "Bunchosia". You probably want to use regular expression to do so. Take a look at all the names (sort(unique(data_plant$taxon_name))) to look at possible genus names and think about how to specify the regular expression pattern. 
+
+Randomly select 100 values from the genus column and print it out.
+
+
+```{r}
+#goal= create genus column (genus), use taxon name column as resource. use regex
+#use ends_with and contains to filter for genus names to extract
+#list all genus names to match
+#all genus has capital letter and lowercase species but then a captital abbrv
+#try n extract by first 8-12 
+top_105_ranking_numbers <-stringr::str_sub(top105,start = 1, end =  5)
+sort(unique(data_plant$taxon_name), decreasing = T)
+topic_wrds<-stringr::str_split(data_plant$taxon_name, " ")
+as_words<-unlist(topic_wrds)
+top_5<-sort(table(as_words), decreasing = T)
+genus<-stringi::stri_sub(data_plant[, 7], cbind(from = 7, length=length))
+str_extract(data_plant[1:10], "<dd>[F|f]ound(.*?)</dd>")
+https://quanteda.io/articles/pkgdown/replication/digital-humanities.html
+```
+```{r}
+https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432
+basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
+
+captureGroup1 <- str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
+captureGroup1
+
+```
+
+The regex we used in captureGroup1 is looking for a name, which starts with a capital letter and has any amount of lowercase letters after it `([A-Z][a-z]+)`. Then after a space it matches the pattern space, word, space `\\s\\w+\\s`. Next we are looking for a 1 to 2 digit number followed by a space and a word `(\\d{1,2}\\s\\w+)`. You can see in the output each row of the matrix is a character string with the details for each person.
+
+2. (2 points) Looking at the taxon_name values, it is clear that some scientific names probably are the same species (as different subspecies). For example, we may want to treat “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” as the same species. Create a new column `taxon_name2` for `data_plant` based on `taxon_name`. `taxon_name2` should just contain the first two words of `taxon_name`. For example, “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” should both be “Calamagrostis canadensis”. 
+
+Randomly select 100 values from the taxon_name2 column and print it out.
+
+
+```{r}
+#create column taxon name 2 based on taxon name. taxon name 2 should contain just the first 2 words of taxon name for each value
+
+```
 
 3. (2 points) Calculate the number of species (based on taxon_name2) of each site observed based on different sizes of plot:
 
@@ -21,8 +74,13 @@ In the neonDivData data package, there is a data frame named as data_plant. This
   + based on 10 m^2^ plots; this would be all observations with sample_area_m2 %in% c("1", "10"). This would result in a data frame named as n_10 with two columns: siteID and richness_10m2.
   + based on 100 m^2^ plots; this would be all observations with sample_area_m2 %in% c("1", "10", "100"). This would result in a data frame named as n_100 with two columns: siteID and richness_100m2.
   + then, use dplyr::left_join() to join n_1, n_10, and n_100 as one data frame n_all, which should have 47 rows and four columns: siteID, richness_1m2, richness_10m2, and richness_100m2. Note: dplyr::left_join() can only join two data frames at each time, so you may use pipe (e.g., xyz = left_join(x, y) %>% left_join(z)).
+  
+```{r}
 
-(2 points) Transform n_all to a long format data frame named as n_all_long with three columns: siteID, spatial_scale, and richness. Hint: tidyr::pivot_longer().
+```
+  
 
-(2 points) Use ggplot2 and n_all_long to generate the plot below. Each line links the three values of each site (hint: aes(group = siteID)).
+4.    (2 points) Transform n_all to a long format data frame named as n_all_long with three columns: siteID, spatial_scale, and richness. Hint: tidyr::pivot_longer().
+
+5.    (2 points) Use ggplot2 and n_all_long to generate the plot below. Each line links the three values of each site (hint: aes(group = siteID)).
 
