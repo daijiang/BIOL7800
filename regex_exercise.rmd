@@ -60,7 +60,7 @@ Meta characters represent a type of character. They will typically begin with a 
 
 \\s: This meta character represents spaces. This will match to each space, tab, and newline character. You may also specify \\t and \\n for tab and newline characters respectively. 
 
-Side note: our example string does not have any tabs, but be cautious when looking for them. Many integrated development environments, or IDE’s, have a setting that will replace all tabs with spaces while you are typing. 
+Side note: this string does not have any tabs, but be cautious when looking for them. Many integrated development environments, IDE’s, have a setting that will replace all tabs with spaces while you are typing. 
 ```{r}
 #extract all instances of a space in basic string
 str_extract_all(basicString, "\\s")
@@ -68,4 +68,35 @@ str_extract_all(basicString, "\\s")
 
 
 \\w: This meta character represents alphanumeric characters. This includes all the letters a-z, capital and lowercase, and the numbers 0–9. This would be the equivalent of the bracket group [A-Za-z0-9], just much quicker to write. Take caution in remembering that the \\w meta character on its own only captures a single character, not entire words or numbers. 
+
+```{r}
+stringr::str_extract_all(basicString, "\\w")
+```
+\\d: This meta character represents numeric digits. when applied to picnic example, it only finds the digits in the string. You’ll notice that like bracket groups `"[0-9]"`, it picks up 5 numbers instead of the 4 we expect. This is because it is looking for each **individual digit**, not groups of digits. 
+
+
+```{r}
+str_extract_all(basicString, "\\d")
+str_match_all(basicString, "\\d")
+```
+
+Quantifiers
+As we saw in the previous section, a single meta character can have somewhat limited functionality. When it comes to words or numbers, we usually want to find more than 1 character at a time. This is where quantifiers come in.
+quantifiers allow you to specify how many of a character you're expecting. they are always following the character that youve specified with one of the commands above
++ quantifies 1 or more matches.
+```{r}
+quantExample <- "B.BB.BBB.BBBB"
+str_extract_all(quantExample, "B+")
+str_match_all(quantExample, "B+")
+
+str_extract_all(basicString, "\\d+ {3}")
+
+str_match_all(basicString, "\\d+ {3}")
+#look up stri match, different grammar
+stri_match_all_regex('breakfast=eggs, lunch=pizza, dessert=icecream',
+   '(\\w+)=(\\w+)')
+```
+This is a good point to mention that **regex looks for non-overlapping matches**. In this case, it looks at each B and the character that follows it. Since we used the `+` quantifier, it continues to match until it reaches the end of a group of B’s.
+
+`{}` quantifies a specific number or range of matches. When written like {2} it will match exactly 2 of the preceding character. We’ll see some interesting results.
 
