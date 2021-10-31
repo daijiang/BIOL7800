@@ -85,18 +85,66 @@ As we saw in the previous section, a single meta character can have somewhat lim
 quantifiers allow you to specify how many of a character you're expecting. they are always following the character that youve specified with one of the commands above
 + quantifies 1 or more matches.
 ```{r}
+#This is a good point to mention that **regex looks for non-overlapping matches**. In this case, it looks at each B and the character that follows it. Since we used the `+` quantifier, it continues to match until it reaches the end of a group of B’s.
 quantExample <- "B.BB.BBB.BBBB"
+#extract "B" one or more matches
 str_extract_all(quantExample, "B+")
+#match "B" one or more matches in a list/matrix
 str_match_all(quantExample, "B+")
-
-str_extract_all(basicString, "\\d+ {3}")
-
-str_match_all(basicString, "\\d+ {3}")
-#look up stri match, different grammar
+# extract all characters, length 3 
+str_extract_all(basicString, "[A-Za-z]{3}")
+#corrected extract all letters specify length 4
+str_extract_all(basicString, "[A-Za-z]{4}")
+# extract all characters, length 1 or 2
+str_extract_all(basicString, "\\d{1,2}")
+# extract all digits in matrix, no specific length
+str_match_all(basicString, "\\d+")
+#use match to match vector values exactly, each of this is a set of characters separated by an equal sign
 stri_match_all_regex('breakfast=eggs, lunch=pizza, dessert=icecream',
    '(\\w+)=(\\w+)')
 ```
-This is a good point to mention that **regex looks for non-overlapping matches**. In this case, it looks at each B and the character that follows it. Since we used the `+` quantifier, it continues to match until it reaches the end of a group of B’s.
+
 
 `{}` quantifies a specific number or range of matches. When written like {2} it will match exactly 2 of the preceding character. We’ll see some interesting results.
+
+```{r}
+#extract exactly 2 instances with 2 of the value "B" 
+quantExact2 = str_extract_all(quantExample, "B{2}")
+quantExact2
+#reading from right to left there are 4 instances of a pair of B's
+```
+we can use a character set with all upper and lower case letters, adding a + quantifier to it. This will find any length of alpha characters grouped together. Said another way, it finds all of the words. 
+
+```{r}
+
+str_extract_all(basicString, "[A-Za-z]+")
+```
+To find the quantity of each food item, we can use the \\d meta character and the quantifier {1,2}. This will find the groups of digits that are 1 or 2 characters long. 
+```{r}
+str_extract_all(basicString, "\\d{1,2}")
+```
+To find the quantity and name of each food item, we can combine quantifiers with meta characters. We know that each number has a food item directly after it, so we can just add on to the previous example. We know there is a space and a word (\\s\\w+) that could be followed by another word like how “soft pretzel” appears. To specify the second word might not be there, we can use the * quantifier with the second word. Just like that we have a list containing the quantity and name of every good at our picnic.
+```{r}
+#find quantity of each food in "basic string" combine meta characters 
+str_extract_all(basicString, "\\d{1,2}\\s\\w+")
+#extract all matches from basic string (digits, length 1 and 2, space, alphanumerics unspecified length)
+str_extract_all(basicString, "\\d{1,2}\\s\\w+\\s*\\w*")
+# extract all the following matches from basic string: digits, length 1 and 2 units, one space, letters alphanumeric one or more, spacers 0 or more and letters 0 or more
+
+# * quantifies zero or more matches. This can be helpful when we are looking for something that may or may not be in our string
+# + quantifies 1 or more matches. 
+#regex reads your data and identifies each match string by string or byte by byte based on the pattern described
+```
+Capture Groups
+Capture groups allow you to look for entire phrases and only return parts of them. 
+in "basicstring" match each person’s name, what they are bringing, and how much of it they are bringing.
+str_extract_all captures individual elements
+str_match_all captures groups in a matrix
+```{r}
+#str_match_all in basic string : capital leters,lowercase, space, alphanumeric 1 or more, space, digit 1 or 2, space, aplhanumeric one or more, space 0 or more, aphanumeric 0 or more
+str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
+str_extract_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
+```
+
+
 
