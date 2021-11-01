@@ -46,21 +46,12 @@ data_plant_genus<-cbind(data_plant, genus)
 
 
 
-top_105_ranking_numbers <-stringr::str_sub(top105,start = 1, end =  5)
-sort(unique(data_plant$taxon_name), decreasing = T)
-topic_wrds<-stringr::str_split(data_plant$taxon_name, " ")
-as_words<-unlist(topic_wrds)
-top_5<-sort(table(as_words), decreasing = T)
-genus<-stringi::stri_sub(data_plant[, 7], cbind(from = 7, length=length))
-str_extract(data_plant[1:10], "<dd>[F|f]ound(.*?)</dd>")
-https://quanteda.io/articles/pkgdown/replication/digital-humanities.html
-```
-```{r}
-https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432
-basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
 
-captureGroup1 <- str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
-captureGroup1
+```
+
+https://quanteda.io/articles/pkgdown/replication/digital-humanities.html
+
+```{r}
 
 ```
 
