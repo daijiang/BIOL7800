@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432
+
 stringr package functions
 str_extract_all(string, pattern) this returns a vector of all pattern matches in a string
 str_replace_all(string, pattern, replacement) this function returns the string with replacements where the pattern described was determined
@@ -146,5 +148,19 @@ str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
 str_extract_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
 ```
 
+```{r}
+captureGroup1 <- str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
+captureGroup1
 
+```
+
+The regex we used in captureGroup1 is looking for a name, which starts with a capital letter and has any amount of lowercase letters after it ([A-Z][a-z]+). Then after a space it matches the pattern space, word, space \\s\\w+\\s. Next we are looking for a 1 to 2 digit number followed by a space and a word (\\d{1,2}\\s\\w+). You can see in the output each row of the matrix is a character string with the details for each person.
+
+By using capture groups, we can return a matrix where each column contains a specific piece of information. We’ll create capture groups containing each name, quantity, and item. Capture groups are simply sections of the regex that you wrap in **parenthesis**.
+
+```{r}
+captureGroup2 <- str_match_all(basicString, "([A-Z][a-z]+)\\s\\w+\\s(\\d{1,2})\\s(\\w+\\s*\\w*)")
+captureGroup2
+```
+The first column in the matrix has the entire regex, ignoring the capture groups. The remaining columns of the matrix each correspond to the capture groups we defined for name, quantity, and item.
 
