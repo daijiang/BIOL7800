@@ -38,6 +38,12 @@ Randomly select 100 values from the genus column and print it out.
 #list all genus names to match
 #all genus has capital letter and lowercase species but then a captital abbrv
 #try n extract by first 8-12 
+#practice /w dpd
+dpd_genus<-cbind2(data_plant, str_match_all(data_plant$taxon_name, "[A-Z][a-z]+"))
+data_plant_genus<-cbind(data_plant, as.matrix(str_extract_all(data_plant$taxon_name, "[A-Z][a-z]+\\s")))
+#rename coln as genus
+
+
 top_105_ranking_numbers <-stringr::str_sub(top105,start = 1, end =  5)
 sort(unique(data_plant$taxon_name), decreasing = T)
 topic_wrds<-stringr::str_split(data_plant$taxon_name, " ")
