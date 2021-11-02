@@ -249,19 +249,20 @@ ggplot(d3, aes(x = Species, y = value, fill = name)) +
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
-  facet_grid(Species ~ .)
+  facet_grid(Species ~ .)#y~x display specis vertically 
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
   facet_grid(Species ~ .) +
   theme(legend.position = "none") # remove legend
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
-  facet_grid(. ~ Species) +
+  facet_grid(. ~ Species) +  
   theme(legend.position = "none") # remove legend
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
-  facet_wrap(~ Species) +
+  facet_wrap(~ Species) + #y~x display species horizontally
   theme(legend.position = "none") # remove legend
+#useing scales modifier with facet wrap you can modify aethetics x&y range
 ```
 
 ## Add smoothers
@@ -269,7 +270,7 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm") #linear regresssion = lm 
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
   geom_smooth(method = "lm") +
@@ -284,11 +285,11 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() +
   geom_smooth(method = "lm") +
   facet_wrap(~ Species) +
-  labs(x = "Species length",
+  labs(x = "Species length",        #labels
        y = "Sepal width",
        color = "Species names") +
   theme(legend.position = "bottom", 
-        legend.key = element_rect(fill = NA),
+        legend.key = element_rect(fill = NA),      #rectangular legend
         strip.background = element_rect(fill = NA)
         ) 
 

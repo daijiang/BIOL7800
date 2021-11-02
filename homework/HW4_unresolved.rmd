@@ -37,3 +37,16 @@ Schedule/materials_df
 #use mutate or transmute case when script
 #mutate only for nonstrings?
 ```
+change col names
+```{r}
+# Change colname of one column
+colnames(data)[colnames(data) == "Old_Name"] <- "New_Name"
+ 
+# Change colnames of all columns
+colnames(data) <- c("New_Name1", "New_Name2", "New_Name3")
+ 
+# Change colnames of some columns
+colnames(data)[colnames(data) %in% c("Old_Name1", "Old_Name2")] <- c("New_Name1", "New_Name2")
+
+```
+

@@ -14,8 +14,17 @@ https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with
 stringr package functions
 str_extract_all(string, pattern) this returns a vector of all pattern matches in a string
 str_replace_all(string, pattern, replacement) this function returns the string with replacements where the pattern described was determined
-```{r}
+
 https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432
+
+https://quanteda.io/articles/pkgdown/replication/digital-humanities.html
+
+
+
+The regex we used in captureGroup1 is looking for a name, which starts with a capital letter and has any amount of lowercase letters after it `([A-Z][a-z]+)`. Then after a space it matches the pattern space, word, space `\\s\\w+\\s`. Next we are looking for a 1 to 2 digit number followed by a space and a word `(\\d{1,2}\\s\\w+)`. You can see in the output each row of the matrix is a character string with the details for each person.
+
+```{r}
+
 basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
 
 captureGroup1 <- str_match_all(basicString, "[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")

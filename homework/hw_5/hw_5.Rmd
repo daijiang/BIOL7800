@@ -39,23 +39,31 @@ Randomly select 100 values from the genus column and print it out.
 #all genus has capital letter and lowercase species but then a captital abbrv
 #try n extract by first 8-12 
 #practice /w dpd
-dpd_genus<-cbind2(data_plant, str_match_all(data_plant$taxon_name, "[A-Z][a-z]+"))
-genus<-as.matrix(str_extract_all(data_plant$taxon_name, "[A-Z][a-z]+\\s"))
+#how do i convert list to values
+
+genus<-str_extract_all(data_plant$taxon_name, "^[A-Z][a-z]+")
+genus<-matrix(unlist(genus), ncol=1, byrow=TRUE)
+#If I add my genus as a list i can cbind but if i unlist it the rows change
 data_plant_genus<-cbind(data_plant, genus)
-#fix regex to pull 1st instance of cap letter only in genus
+colbinded_genus = bind_cols(data_plant,genus)
 
+#use str extract all to match all observations that start with capital alphanumeric followed by any number of lowercase alpha numerics and a space 
+#then use cbind to add genus to data plant table
+#how do I insert it next to taxon name?
+#how do I get it to present like other cols
 
+#make random selection
+#select random sample of three rows from data frame
+rand_dpg <- df[sample(nrow(df), size=3), ]
 
+#display randomly selected rows
+rand_df
 
+rand_genus<- data_plant_genus[sample(nrow(data_plant_genus), size=100), ]
+
+class(rand_genus$taxon_id)
 ```
 
-https://quanteda.io/articles/pkgdown/replication/digital-humanities.html
-
-```{r}
-
-```
-
-The regex we used in captureGroup1 is looking for a name, which starts with a capital letter and has any amount of lowercase letters after it `([A-Z][a-z]+)`. Then after a space it matches the pattern space, word, space `\\s\\w+\\s`. Next we are looking for a 1 to 2 digit number followed by a space and a word `(\\d{1,2}\\s\\w+)`. You can see in the output each row of the matrix is a character string with the details for each person.
 
 2. (2 points) Looking at the taxon_name values, it is clear that some scientific names probably are the same species (as different subspecies). For example, we may want to treat “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” as the same species. Create a new column `taxon_name2` for `data_plant` based on `taxon_name`. `taxon_name2` should just contain the first two words of `taxon_name`. For example, “Calamagrostis canadensis (Michx.) P. Beauv.” and “Calamagrostis canadensis (Michx.) P. Beauv. var. langsdorffii (Link) Inman” should both be “Calamagrostis canadensis”. 
 
@@ -64,6 +72,10 @@ Randomly select 100 values from the taxon_name2 column and print it out.
 
 ```{r}
 #create column taxon name 2 based on taxon name. taxon name 2 should contain just the first 2 words of taxon name for each value
+#print 100 values from taxon name2
+
+taxon_name2<-as.matrix(str_extract_all(data_plant$taxon_name, "^[A-Z][a-z]+\\s"))
+data_plant_genus<-cbind(data_plant, genus)
 
 ```
 
