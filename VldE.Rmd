@@ -1,0 +1,22 @@
+---
+title: "VldE"
+author: "DerekRBratcher"
+date: "11/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(bio3d)
+
+pdb_VldE<-read.pdb("4F97")
+
+pdb_VldE
+```
+# Normal Mode Analysis to predict flexibility of Pseudoglycosyltransferase VldE
+
+Normal mode analysis (NMA) is a computational approach for studying and characterizing protein flexibility. Bio3d functionality entails normal modes calculation on either a single protein structure or an ensemble of aligned protein structures(pca).
+As a result of normal mode analysis, the protein motion is represented as a linear combination of mutually independent normal mode vectors. Furthermore, it is possible to represent the effect of external perturbations, e.g., ligand binding, hydrostatic pressure, as the shifts of normal mode variables. Making use of this advantage, we are able to explore mechanical properties of proteins such as Young's modulus and compressibility. Within thermally fluctuating protein molecules under physiological conditions, tightly packed amino acid residues interact with each other through heat and energy exchanges. Since the structure and dynamics of protein molecules are highly anisotropic, the flow of energy and heat should also be anisotropic. 
