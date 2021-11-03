@@ -105,6 +105,7 @@ n_all<-dplyr::left_join(n_1, n_10) |> left_join(n_100)
 4.    (2 points) Transform n_all to a long format data frame named as n_all_long with three columns: siteID, spatial_scale, and richness. Hint: tidyr::pivot_longer().
 
 ```{r}
+#taking the n_all dataset specifically col2 make a col called richness collapsing m2 and combining spatial scale values
 
 n_all_long<-pivot_longer(n_all, cols = 2, names_to = "richness",
 values_to = "spacial_scale")
