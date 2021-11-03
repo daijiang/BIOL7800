@@ -48,5 +48,8 @@ colnames(data) <- c("New_Name1", "New_Name2", "New_Name3")
 # Change colnames of some columns
 colnames(data)[colnames(data) %in% c("Old_Name1", "Old_Name2")] <- c("New_Name1", "New_Name2")
 
+#binding lang let me know how to get my unlisted values into data_plant table
+data_plant_genus<-cbind(data_plant, genus)
+colbinded_genus = bind_cols(data_plant,genus)
 ```
 
